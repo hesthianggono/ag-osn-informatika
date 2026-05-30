@@ -7,6 +7,7 @@ import { topics } from '@/lib/data/topics'
 import { problems } from '@/lib/data/problems'
 import VentiCharacter from '@/components/VentiCharacter'
 import HeroCharacter from '@/components/HeroCharacter'
+import AieshaPortrait from '@/components/AieshaPortrait'
 
 const STAGES = [
   {
@@ -107,9 +108,12 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Venti Character — companion */}
-          <div className="flex-shrink-0 flex flex-col items-center">
-            <VentiCharacter size="md" showQuote={true} />
+          {/* AIESHA Portrait (close-up) + Venti companion */}
+          <div className="flex-shrink-0 flex flex-col items-center gap-3">
+            <AieshaPortrait size={170} />
+            <div className="scale-90 origin-top">
+              <VentiCharacter size="sm" showQuote={true} />
+            </div>
           </div>
         </div>
 
