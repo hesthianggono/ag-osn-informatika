@@ -5,9 +5,7 @@ import { useEffect, useState } from 'react'
 import { getProgress, type UserProgress } from '@/lib/progress'
 import { topics } from '@/lib/data/topics'
 import { problems } from '@/lib/data/problems'
-import VentiCharacter from '@/components/VentiCharacter'
 import HeroCharacter from '@/components/HeroCharacter'
-import AieshaPortrait from '@/components/AieshaPortrait'
 
 const STAGES = [
   {
@@ -68,58 +66,61 @@ export default function HomePage() {
     return () => { window.removeEventListener('ag-progress-update', onUpdate); clearInterval(iv) }
   }, [])
 
-  const title = progress ? getTitle(progress.xp) : AR_TITLES[0]
-  const nextTitle = AR_TITLES.find(t => t.min > (progress?.xp ?? 0))
-  const xpPercent = progress && nextTitle
-    ? Math.min(100, ((progress.xp - title.min) / (nextTitle.min - title.min)) * 100)
-    : 95
-
   return (
     <div className="min-h-screen p-4 md:p-8 animate-fadeIn">
 
       {/* ══════════════════════════════
-          HERO SECTION with Venti
+          HERO BANNER — foto AIESHA frameless di kanan, di belakang teks
           ══════════════════════════════ */}
-      <div className="mb-8 relative">
-        {/* Anemo background glow */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
-          <div style={{
-            position: 'absolute', top: '-40px', right: '-20px',
-            width: '300px', height: '300px',
-            background: 'radial-gradient(circle, rgba(38,166,154,0.08), transparent 70%)',
-          }} />
+      <div className="relative mb-6 rounded-2xl overflow-hidden"
+        style={{
+          minHeight: 230,
+          background: 'linear-gradient(100deg, rgba(8,22,35,0.6) 0%, rgba(8,20,32,0.3) 50%, transparent 100%)',
+          border: '1px solid rgba(38,166,154,0.15)',
+        }}>
+
+        {/* Glow accents */}
+        <div className="absolute inset-0 pointer-events-none" style={{
+          background: 'radial-gradient(ellipse 40% 70% at 78% 50%, rgba(38,166,154,0.12), transparent 70%), radial-gradient(ellipse 30% 50% at 92% 80%, rgba(239,83,80,0.10), transparent 70%)'
+        }} />
+
+        {/* AIESHA photo — frameless, kanan, DI BELAKANG teks (z-1) */}
+        <div className="absolute top-0 bottom-0 right-0 pointer-events-none select-none"
+          style={{ width: '52%', maxWidth: 360, zIndex: 1 }}>
+          <img src="/aiesha.png" alt="AIESHA"
+            className="h-full w-full object-contain object-right-bottom animate-floatSlow"
+            style={{
+              filter: 'drop-shadow(0 0 28px rgba(38,166,154,0.3)) drop-shadow(0 0 40px rgba(239,83,80,0.15))',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 22%, black 45%)',
+              maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 22%, black 45%)',
+            }} />
         </div>
 
-        {/* Welcome text + Venti companion */}
-        <div className="flex flex-col md:flex-row gap-6 items-start mb-5">
-          <div className="flex-1">
-            <div className="text-xs tracking-widest font-bold mb-2" style={{ color: 'var(--fg-dim)' }}>
-              ♪ AG · AKADEMI INFORMATIKA OSN · MONDSTADT EDITION
-            </div>
-            <h1 className="text-3xl md:text-4xl font-black mb-3 leading-tight">
-              <span className="gradient-text">Selamat Datang,</span>
-              <br />
-              <span className="gradient-text-gold">AIESHA</span>
-              <span style={{ color: 'var(--fg)' }}>! 🌿🔥</span>
-            </h1>
-            <p className="text-sm mb-4" style={{ color: 'var(--fg-muted)' }}>
-              Kuasai algoritma, taklukkan OSN —<br />
-              dengan angin Mondstadt & semangat api yang membara ✨
-            </p>
+        {/* Welcome text — DI DEPAN foto (z-10) */}
+        <div className="relative px-5 py-6 md:px-7 md:py-7" style={{ zIndex: 10, maxWidth: '70%' }}>
+          <div className="text-xs tracking-widest font-bold mb-2" style={{ color: 'var(--fg-dim)' }}>
+            ♪ AG · AKADEMI INFORMATIKA OSN · MONDSTADT EDITION
           </div>
-
-          {/* AIESHA Portrait (close-up) + Venti companion */}
-          <div className="flex-shrink-0 flex flex-col items-center gap-3">
-            <AieshaPortrait size={170} />
-            <div className="scale-90 origin-top">
-              <VentiCharacter size="sm" showQuote={true} />
-            </div>
+          <h1 className="text-3xl md:text-4xl font-black mb-3 leading-tight">
+            <span className="gradient-text">Selamat Datang,</span>
+            <br />
+            <span className="gradient-text-gold">AIESHA</span>
+            <span style={{ color: 'var(--fg)' }}>! 🌿🔥</span>
+          </h1>
+          <p className="text-sm mb-4" style={{ color: 'var(--fg-muted)' }}>
+            Kuasai algoritma, taklukkan OSN —<br />
+            dengan angin Mondstadt &amp; semangat api yang membara ✨
+          </p>
+          {/* Quick CTA */}
+          <div className="flex gap-2 flex-wrap">
+            <Link href="/materi"><div className="btn-venti">📜 Mulai Belajar</div></Link>
+            <Link href="/latihan"><div className="btn-venti">⚔️ Latihan Soal</div></Link>
           </div>
         </div>
-
-        {/* ── Hero Character Card (putri pengguna) ── */}
-        <HeroCharacter />
       </div>
+
+      {/* ── Hero Character Card (putri pengguna) ── */}
+      <HeroCharacter />
 
       {/* ── Rotating Tip ── */}
       <div className="mb-6 px-4 py-3 rounded-xl flex items-center gap-3 animate-glow"

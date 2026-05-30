@@ -77,18 +77,11 @@ export default function HeroCharacter() {
               )}
             </div>
 
-            {/* Element badges (Anemo + Pyro) */}
-            <div className="absolute -top-2 -right-2 flex flex-col gap-1">
-              <div className="w-8 h-8 rounded-full flex items-center justify-center text-base animate-floatSlow"
-                title="Anemo (Angin)"
-                style={{ background: 'radial-gradient(circle, rgba(38,166,154,0.9), rgba(38,166,154,0.4))', boxShadow: '0 0 12px rgba(38,166,154,0.6)', border: '1px solid rgba(128,203,196,0.6)' }}>
-                🌀
-              </div>
-              <div className="w-8 h-8 rounded-full flex items-center justify-center text-base animate-floatSlow"
-                title="Pyro (Api)"
-                style={{ background: 'radial-gradient(circle, rgba(239,83,80,0.9), rgba(239,83,80,0.4))', boxShadow: '0 0 12px rgba(239,83,80,0.6)', border: '1px solid rgba(255,138,101,0.6)', animationDelay: '0.5s' }}>
-                🔥
-              </div>
+            {/* Vision badge (logo Anemo+Pyro) */}
+            <div className="absolute -top-3 -right-3 w-11 h-11 animate-floatSlow"
+              title="Vision: Anemo + Pyro">
+              <img src="/logo.png" alt="Vision" className="w-full h-full object-contain"
+                style={{ filter: 'drop-shadow(0 0 8px rgba(38,166,154,0.6)) drop-shadow(0 0 10px rgba(239,83,80,0.4))' }} />
             </div>
           </div>
         </div>
@@ -113,15 +106,16 @@ export default function HeroCharacter() {
             </span>
           </div>
 
-          {/* Element affinities */}
+          {/* Element Vision (logo Anemo+Pyro) */}
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs px-2 py-1 rounded-lg flex items-center gap-1 font-semibold"
-              style={{ background: 'rgba(38,166,154,0.12)', color: 'var(--anemo-soft)', border: '1px solid rgba(38,166,154,0.35)' }}>
-              🌀 Anemo
-            </span>
-            <span className="text-xs px-2 py-1 rounded-lg flex items-center gap-1 font-semibold"
-              style={{ background: 'rgba(239,83,80,0.12)', color: '#ff8a65', border: '1px solid rgba(239,83,80,0.35)' }}>
-              🔥 Pyro
+            <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg font-semibold"
+              style={{ background: 'linear-gradient(135deg, rgba(38,166,154,0.12), rgba(239,83,80,0.12))', border: '1px solid rgba(38,166,154,0.35)' }}>
+              <img src="/logo.png" alt="Vision" className="w-5 h-5 object-contain"
+                style={{ filter: 'drop-shadow(0 0 4px rgba(38,166,154,0.5))' }} />
+              <span className="text-xs" style={{ color: 'var(--anemo-soft)' }}>Anemo</span>
+              <span className="text-xs" style={{ color: 'var(--fg-dim)' }}>·</span>
+              <span className="text-xs" style={{ color: '#ff8a65' }}>Pyro</span>
+              <span className="text-xs" style={{ color: 'var(--fg-dim)' }}>Vision</span>
             </span>
           </div>
 
