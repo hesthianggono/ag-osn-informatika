@@ -1,0 +1,6 @@
+# File backup foto asli (tidak perlu di production)
+public/hero-raw.png
+
+# Build & dependencies (Vercel build ulang otomatis)
+.next
+node_modules

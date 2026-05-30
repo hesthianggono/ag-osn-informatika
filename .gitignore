@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Backup foto asli (tidak perlu di repo)
+public/hero-raw.png
